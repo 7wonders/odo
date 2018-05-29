@@ -90,7 +90,7 @@ def path(graph, source, target, excluded_edges=None, ooc_types=ooc_types):
                                     if issubclass(n, oocs)])
     with without_edges(graph, excluded_edges) as g:
         pth = nx.shortest_path(g, source=source, target=target, weight='cost')
-        result = [(src, tgt, graph.edge[src][tgt]['func'])
+        result = [(src, tgt, graph.get_edge_data(src, tgt)['func'])
                   for src, tgt in zip(pth, pth[1:])]
     return result
 
